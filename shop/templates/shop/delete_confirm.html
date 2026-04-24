@@ -1,0 +1,8 @@
+<div style="text-align: center; padding: 50px; font-family: sans-serif;">
+    <h2>هل أنت متأكد من حذف "{{ product.title }}"؟</h2>
+    <form method="post">
+        {% csrf_token %}
+        <button type="submit" style="background: red; color: white; padding: 10px 20px; border: none; cursor: pointer;">نعم، احذف</button>
+        <a href="/" style="text-decoration: none; margin-left: 10px; color: blue;">إلغاء</a>
+    </form>
+</div>

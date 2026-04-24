@@ -1,0 +1,9 @@
+<div style="max-width: 500px; margin: 50px auto; padding: 20px; border: 1px solid #ddd; font-family: sans-serif;">
+    <h2 style="text-align: center;">تعديل المنتج</h2>
+    <form method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit" style="width: 100%; background: #ff9900; padding: 10px; border: none; cursor: pointer; font-weight: bold;">حفظ التغييرات</button>
+    </form>
+    <p style="text-align: center;"><a href="/">رجوع للقائمة</a></p>
+</div>

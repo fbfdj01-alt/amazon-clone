@@ -7,25 +7,30 @@ def product_list(request):
     return render(request, 'shop/product_list.html', {'products': products})
 
 def add_product(request):
-    if request.method == "POST":
-        form = ProductForm(request.POST)
+    if request.method == 'POST':
+        # لاحظ request.FILES هي المسؤولة عن استلام صورتك من الجوال
+        form = ProductForm(request.POST, request.FILES)
         if form.is_valid():
             form.save()
             return redirect('product_list')
     else:
         form = ProductForm()
     return render(request, 'shop/add_product.html', {'form': form})
-def delete_product(request, pk):
-    product = get_object_or_404(Product, id=pk)
-    product.delete()
-    return redirect('product_list')
+
 def edit_product(request, pk):
-    product = get_object_or_404(Product, id=pk)
-    if request.method == "POST":
-        form = ProductForm(request.POST, instance=produ
+    product = get_object_or_404(Product, pk=pk)
+    if request.method == 'POST':
+        form = ProductForm(request.POST, request.FILES, instance=product)
         if form.is_valid():
             form.save()
             return redirect('product_list')
     else:
         form = ProductForm(instance=product)
-    return render(request, 'shop/add_product.html', {'form': form})
+    return render(request, 'shop/edit_product.html', {'form': form})
+
+def delete_product(request, pk):
+    product = get_object_or_404(Product, pk=pk)
+    if request.method == 'POST':
+        product.delete()
+        return redirect('product_list')
+    return render(request, 'shop/delete_confirm.html', {'product': product})

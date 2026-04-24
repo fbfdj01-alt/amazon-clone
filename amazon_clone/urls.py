@@ -1,9 +1,13 @@
 from django.contrib import admin
-from django.urls import path
-from shop.views import product_list, add_product
+from django.urls import path, include
+from django.conf import settings
+from django.conf.urls.static import static
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('', product_list, name='product_list'),
-    path('add/', add_product, name='add_product'),
-]
+    path('', include('shop.urls')),
+] 
+
+# هذا هو الجزء الذي يسمح بعرض الصور في المتصفح
+if settings.DEBUG:
+    urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
