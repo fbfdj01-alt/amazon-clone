@@ -20,10 +20,13 @@ MarkupSafe==3.0.3
 multidict==6.7.1
 nest-asyncio2==1.7.2
 packaging==26.1
+pillow==12.2.0
 propcache==0.4.1
 pycryptodome==3.23.0
 requests==2.33.1
 sqlparse==0.5.5
+tzdata==2026.2
 urllib3==1.26.20
 Werkzeug==3.1.8
+whitenoise==6.12.0
 yarl==1.23.0
